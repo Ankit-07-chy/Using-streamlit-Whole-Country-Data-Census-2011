@@ -4,7 +4,11 @@ import plotly.express as px
 import streamlit as st
 import matplotlib.pyplot as plt
 
-st.set_page_config(layout='wide')
+st.set_page_config(layout='wide',
+                   page_title="Country Census Analysis", 
+                   )
+st.header('Analysis of Data --- Census(2011)')
+
 
 # Data wala part
 df = pd.read_csv('final_df.csv')
@@ -25,7 +29,7 @@ if plot:
     st.text('Size Represent primary')
     st.text('Color Represent secondary')
     if selected_state == 'Over All India':
-        fig = px.scatter_map(df, lat="Latitude", lon="Longitude",size=primary,color=secondary,zoom=3,size_max=35,hover_name='District',width=1500,height=700,map_style='carto-positron',color_continuous_scale=px.colors.sequential.Plasma)
+        fig = px.scatter_map(df, lat="Latitude", lon="Longitude",size=primary,color=secondary,zoom=4,size_max=35,hover_name='District',width=1500,height=700,map_style='carto-positron',color_continuous_scale=px.colors.sequential.Plasma)
         st.plotly_chart(fig)
 
         # ---- Top Population state--#
@@ -79,3 +83,5 @@ if plot:
         st.dataframe(temp[['District','Households_with_Internet']].sort_values(by='Households_with_Internet',ascending=False).head().reset_index()[['District','Households_with_Internet']],hide_index=True)
         
         pass #state wise
+
+    st.header('Thanks For Coming Here!')
